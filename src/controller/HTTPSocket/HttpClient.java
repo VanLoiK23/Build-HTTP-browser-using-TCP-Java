@@ -43,8 +43,11 @@ public class HttpClient {
 		try {
 			socket = new Socket(httpMessage.getHost(), httpMessage.getPort());
 			PrintWriter out = new PrintWriter(socket.getOutputStream());
-			InputStream dataIn = socket.getInputStream();
-			BufferedReader in = new BufferedReader(new InputStreamReader(dataIn));
+//			InputStream dataIn = socket.getInputStream();
+//			BufferedReader in = new BufferedReader(new InputStreamReader(dataIn));
+
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(socket.getInputStream(), StandardCharsets.UTF_8));
 
 			// Gửi HTTP Request
 			out.println(httpMessage.getMethod() + " " + httpMessage.getPath() + " HTTP/1.1");
@@ -80,24 +83,21 @@ public class HttpClient {
 			// Lấy Content-Length để đọc phần body
 			int contentLength = 0;
 			if (headers.containsKey("Content-Length")) {
-				contentLength = Integer.parseInt(headers.get("Content-Length"));
+			    contentLength = Integer.parseInt(headers.get("Content-Length"));
 			}
 
-			// Đọc phần body
-//			byte[] bodyBytes = new byte[contentLength];
-//			int totalRead = 0;
-//			while (totalRead < contentLength) {
-//				int bytesRead = dataIn.read(bodyBytes, totalRead, contentLength - totalRead);
-//				if (bytesRead == -1)
-//					break; // hết dữ liệu
-//				totalRead += bytesRead;
-//			}
-//
-//			String body = new String(bodyBytes);
+			char[] bodyChars = new char[contentLength];
+			int totalRead = 0;
+			while (totalRead < contentLength) {
+			    int bytesRead = in.read(bodyChars, totalRead, contentLength - totalRead);
+			    if (bytesRead == -1) break;
+			    totalRead += bytesRead;
+			}
 
-			// dùng lại socket stream
-			byte[] bodyBytes = dataIn.readNBytes(contentLength);
-			String body = new String(bodyBytes, StandardCharsets.UTF_8);
+			String body = new String(bodyChars)
+				    .replaceAll("[\\p{C}]", "")       // loại bỏ ký tự điều khiển
+				    .replaceAll("\\s+$", "")          // xóa khoảng trắng cuối
+				    .trim();                          // xóa khoảng trắng đầu/cuối
 
 			if (bodyHandler != null) {
 				bodyHandler.accept(body);
@@ -115,16 +115,10 @@ public class HttpClient {
 			showError("Đã xảy ra lỗi khi gửi yêu cầu đến server!");
 		} finally {
 			try {
-//				if (dataIn != null)
-//					dataIn.close();
-//				if (in != null)
-//					in.close();
-//				if (out != null)
-//					out.close();
+
 				if (socket != null)
 					socket.close();
-//				headerHandler = null;
-//				bodyHandler = null;
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

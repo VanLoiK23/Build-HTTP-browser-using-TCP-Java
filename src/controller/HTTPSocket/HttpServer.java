@@ -111,9 +111,7 @@ public class HttpServer implements Runnable {
 //		//BufferOutputStream
 //		dataOut.write(content, 0, content.length);
 //		dataOut.flush();
-		
-		
-		
+				
 		 OutputStream out = connect.getOutputStream();
 		    String header = ""
 		        + "HTTP/1.1 " + status + "\r\n"
@@ -125,6 +123,8 @@ public class HttpServer implements Runnable {
 		    out.write(header.getBytes("UTF-8"));
 		    out.write(content);
 		    out.flush();
+		    
+		    connect.shutdownOutput(); 
 	}
 
 	private static byte[] readFile(File file) throws IOException {

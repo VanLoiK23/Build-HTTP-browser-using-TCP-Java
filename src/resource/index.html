@@ -1,77 +1,252 @@
 <!DOCTYPE html>
 <html lang="vi">
-
 <head>
-	<meta charset="UTF-8">
-	<title>Trang chủ</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>iPhone 17 - Đỉnh cao công nghệ</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(to right, #e0f7fa, #ffffff);
+        color: #333;
+    }
 
-	<!-- CSS viết trực tiếp trong file -->
-	<style>
-		body {
-			font-family: Arial, sans-serif;
-			background: linear-gradient(to right, #4facfe, #00f2fe);
-			margin: 0;
-			padding: 0;
-			color: #333;
-		}
+    header {
+        background: linear-gradient(135deg, #1a73e8, #4285f4);
+        color: white;
+        text-align: center;
+        padding: 40px 10px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
 
-		header {
-			background-color: rgba(255, 255, 255, 0.8);
-			text-align: center;
-			padding: 20px 0;
-			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-		}
+    header h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+    }
 
-		h1 {
-			color: #0077cc;
-			margin: 0;
-		}
+    header p {
+        font-size: 18px;
+        margin-top: 0;
+    }
 
-		main {
-			text-align: center;
-			margin-top: 40px;
-		}
+    nav {
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
 
-		button {
-			background-color: #0077cc;
-			color: white;
-			border: none;
-			padding: 10px 20px;
-			font-size: 16px;
-			border-radius: 6px;
-			cursor: pointer;
-			transition: background-color 0.3s;
-		}
+    nav a {
+        padding: 15px 25px;
+        color: #0077cc;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+    }
 
-		button:hover {
-			background-color: #005fa3;
-		}
+    nav a:hover {
+        background-color: #0077cc;
+        color: white;
+    }
 
-		footer {
-			margin-top: 60px;
-			text-align: center;
-			padding: 10px;
-			font-size: 14px;
-			color: #fff;
-			background-color: rgba(0, 0, 0, 0.2);
-		}
-	</style>
+    main {
+        text-align: center;
+        padding: 40px 20px;
+    }
+
+    .hero {
+        background: url('https://www.apple.com/v/iphone-14-pro/c/images/meta/iphone-14-pro_overview__e4jdc2r2y6e2_og.png') no-repeat center/contain;
+        height: 400px;
+        margin: 20px auto;
+    }
+
+    .intro {
+        max-width: 800px;
+        margin: 0 auto;
+        font-size: 18px;
+        line-height: 1.6;
+    }
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 40px;
+    }
+
+    .feature-card {
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-card h3 {
+        color: #0077cc;
+    }
+
+    /* Phần gallery ảnh */
+    .gallery {
+        margin-top: 60px;
+    }
+
+    .gallery h2 {
+        color: #0077cc;
+    }
+
+    .gallery-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .gallery-item {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+        width: 280px;
+        transition: transform 0.3s;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.05);
+    }
+
+    .gallery-item img {
+        width: 100%;
+        height: 240px;
+        object-fit: cover;
+    }
+
+    .gallery-item span {
+        display: block;
+        padding: 12px;
+        font-size: 16px;
+        background-color: #f8f9fa;
+        color: #333;
+    }
+
+    .cta {
+        margin-top: 60px;
+    }
+
+    .cta button {
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        padding: 14px 30px;
+        font-size: 18px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .cta button:hover {
+        background-color: #005fa3;
+    }
+
+    footer {
+        background: #222;
+        color: #ddd;
+        text-align: center;
+        padding: 20px;
+        margin-top: 60px;
+        font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+        header h1 {
+            font-size: 28px;
+        }
+    }
+</style>
 </head>
-
 <body>
-	<header>
-		<h1>Chào mừng đến với Trang chủ</h1>
-		<p>Đây là trang index với CSS được nhúng trực tiếp</p>
-	</header>
 
-	<main>
-		<p>Trang này được gửi từ server và hiển thị trực tiếp trong trình duyệt hoặc WebView.</p>
-		<button onclick="alert('Chào bạn!')">Nhấn thử</button>
-	</main>
+<header>
+    <h1>iPhone 17 - Đỉnh cao công nghệ mới</h1>
+    <p>Trải nghiệm tương lai trong lòng bàn tay bạn.</p>
+</header>
 
-	<footer>
-		© 2025 LOIHV. All rights reserved.
-	</footer>
+<!-- <nav>
+    <a href="#">Trang chủ</a>
+    <a href="#">Tính năng</a>
+    <a href="#">So sánh</a>
+    <a href="#">Mua ngay</a>
+    <a href="#">Liên hệ</a>
+</nav> -->
+
+<main>
+
+    <section class="intro">
+        <h2>Giới thiệu iPhone 17</h2>
+        <p>
+            iPhone 17 đánh dấu bước nhảy vọt trong công nghệ di động với thiết kế sang trọng, 
+            viền mỏng tuyệt đối và hiệu năng vượt trội. Từ chip A19 Bionic cho đến cụm camera AI 200MP, 
+            mọi chi tiết đều được tối ưu để mang đến trải nghiệm hoàn hảo.
+        </p>
+    </section>
+
+    <section class="features">
+        <div class="feature-card">
+            <h3>Pin siêu bền</h3>
+            <p>Thời lượng pin kéo dài đến 48 giờ sử dụng liên tục cùng công nghệ sạc nhanh 65W.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Camera AI 200MP</h3>
+            <p>Chụp ảnh siêu chi tiết và quay video 8K HDR nhờ cảm biến thế hệ mới.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Hiệu năng A19 Bionic</h3>
+            <p>Chip xử lý 3nm mới nhất giúp tiết kiệm năng lượng và tối ưu tốc độ vượt trội.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Màn hình ProMotion</h3>
+            <p>Tần số quét 120Hz cho trải nghiệm mượt mà, độ sáng lên đến 2000 nits.</p>
+        </div>
+    </section>
+
+    <section class="gallery">
+        <h2>Bộ sưu tập iPhone 17</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/DPn5KymG/apple-iphone-17-lock-screen-250909.webp" alt="iPhone 17 mặt trước">
+                <span>Mặt trước tinh tế với viền mỏng và màn hình siêu sáng.</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/hFjtS25M/apple-iphone-17-pro-6.jpg" alt="Cụm camera iPhone 17">
+                <span>Cụm camera AI 200MP mang lại ảnh sắc nét trong mọi điều kiện.</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/rGbFnLZJ/photo-1757486875734-17574868759311206168444-1757498631719-17574986371931069431558.jpg" alt="Thiết kế mặt sau">
+                <span>Thiết kế kính mờ sang trọng và khung titan siêu nhẹ.</span>
+            </div>
+            <div class="gallery-item">
+                <img src="https://i.ibb.co/7JPS0P20/download.jpg" alt="Các màu sắc iPhone 17">
+                <span>Nhiều tùy chọn màu sắc hiện đại: Titan Xanh, Hồng Ngọc, Bạc Băng.</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="cta">
+        <h2>Sẵn sàng nâng cấp?</h2>
+        <button onclick="alert('Cảm ơn bạn đã quan tâm đến iPhone 17!')">Đặt hàng ngay</button>
+    </div>
+</main>
+
+<footer>
+    © 2025 LOIHV. Thiết kế bởi VoidX Studio. | Email: contact@voidx.vn
+</footer>
+
 </body>
-
 </html>
